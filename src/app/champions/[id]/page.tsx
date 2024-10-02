@@ -1,4 +1,4 @@
-import { getChampion, getLatestVersion } from "@/utils/serverApi";
+import { fetchChampionDetail, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
 
 interface ChampionDetailPageProps {
@@ -11,7 +11,7 @@ const ChampionDetailPage = async ({ params }: ChampionDetailPageProps) => {
   const id = params.id;
 
   const version = await getLatestVersion();
-  const champion = await getChampion(id, version);
+  const champion = await fetchChampionDetail(id, version);
 
   if (!champion) return <div>로딩중</div>;
 
