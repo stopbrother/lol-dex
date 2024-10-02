@@ -1,6 +1,6 @@
 "use server";
 
-import { ChampionResponse } from "@/types/Champion";
+import { Champion, ChampionResponse } from "@/types/Champion";
 
 export const getLatestVersion = async () => {
   try {
@@ -15,7 +15,7 @@ export const getLatestVersion = async () => {
   }
 };
 
-export const getChampions = async (version: string) => {
+export const getChampionList = async (version: string) => {
   try {
     const response = await fetch(
       `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`
@@ -27,3 +27,14 @@ export const getChampions = async (version: string) => {
     console.error("fetch champions:", error);
   }
 };
+
+// export const getChampion = async ({id, version}: Champion["id", "version"]) => {
+//   try {
+//     const response = await fetch(
+//       `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${id}.json`
+//     );
+
+//     const data = await response.json();
+//     return data;
+//   } catch {}
+// };

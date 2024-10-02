@@ -1,14 +1,15 @@
-import { getChampions, getLatestVersion } from "@/utils/serverApi";
+import { getChampionList, getLatestVersion } from "@/utils/serverApi";
+
+export const revalidate = 86400;
 
 const Championspage = async () => {
   const version = await getLatestVersion();
-  const champions = await getChampions(version);
-  if (!champions) return <div>오류 발생</div>;
+  const champions = await getChampionList(version);
 
   return (
     <main>
       <ul>
-        {champions.map((champion) => (
+        {champions?.map((champion) => (
           <li key={champion.key}>
             <p>{champion.name}</p>
           </li>
