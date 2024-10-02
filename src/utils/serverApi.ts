@@ -1,6 +1,11 @@
 "use server";
 
-import { ChampionListItem, ChampionsData } from "@/types/Champion";
+import {
+  ChampionDetail,
+  ChampionDetailData,
+  ChampionListItem,
+  ChampionsData,
+} from "@/types/Champion";
 
 export const getLatestVersion = async () => {
   try {
@@ -29,5 +34,23 @@ export const getChampionList = async (
   } catch (error) {
     console.error("fetch champions:", error);
     return [];
+  }
+};
+
+export const getChampion = async (
+  id: string,
+  version: string
+): Promise<ChampionDetail | null> => {
+  try {
+    const response = await fetch(
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${id}.json`
+    );
+
+    const data: ChampionDetailData = await response.json();
+    return data.data[id];
+  } catch (error) {
+    console.error("fetch champion", error);
+
+    return null;
   }
 };
