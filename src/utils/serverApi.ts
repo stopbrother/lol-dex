@@ -6,6 +6,7 @@ import {
   ChampionListItem,
   ChampionsData,
 } from "@/types/Champion";
+import { Item, ItemsData } from "@/types/Item";
 
 export const getLatestVersion = async () => {
   try {
@@ -54,4 +55,14 @@ export const fetchChampionDetail = async (
 
     return null;
   }
+};
+
+export const fetchItemList = async (version: string): Promise<Item[]> => {
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/item.json`
+  );
+
+  const data: ItemsData = await response.json();
+
+  return Object.values(data.data);
 };
