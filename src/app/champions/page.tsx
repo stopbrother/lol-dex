@@ -13,8 +13,8 @@ const ChampionsPage = async () => {
     <main>
       <ul>
         {champions?.map((champion) => (
-          <li key={champion.id}>
-            <Link href={`/champions/${champion.id}`}>
+          <li key={champion.key}>
+            <Link href={`/champions/${champion.key}`}>
               <Image
                 src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.image.full}`}
                 alt={champion.name}
