@@ -3,3 +3,5 @@ export interface ChampionRotation {
   freeChampionIdsForNewPlayers: number[];
   maxNewPlayerLevel: number;
 }
+
+export type ChampionRotationIds = Pick<ChampionRotation, "freeChampionIds">;
