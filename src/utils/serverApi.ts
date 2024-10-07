@@ -9,58 +9,50 @@ import {
 import { Item, ItemsData } from "@/types/Item";
 
 export const getLatestVersion = async () => {
-  try {
-    const response = await fetch(
-      "https://ddragon.leagueoflegends.com/api/versions.json"
-    );
+  const response = await fetch(
+    "https://ddragon.leagueoflegends.com/api/versions.json"
+  );
 
-    const versions: string[] = await response.json();
-    return versions[0];
-  } catch (error) {
-    console.error("fetch version:", error);
-    return "";
-  }
+  if (!response.ok) throw new Error("버전정보를 가져오는데 실패했습니다.");
+
+  const versions: string[] = await response.json();
+  return versions[0];
 };
 
-export const getChampionList = async (
+export const fetchChampionList = async (
   version: string
 ): Promise<ChampionListItem[]> => {
-  try {
-    const response = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`
-    );
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`
+  );
 
-    const data: ChampionsData = await response.json();
-    return Object.values(data.data);
-  } catch (error) {
-    console.error("fetch champions:", error);
-    return [];
-  }
+  if (!response.ok) throw new Error("챔피언 목록을 가져오는데 실패했습니다.");
+
+  const data: ChampionsData = await response.json();
+  return Object.values(data.data);
 };
 
 export const fetchChampionDetail = async (
   id: string,
   version: string
-): Promise<ChampionDetail | null> => {
-  try {
-    const response = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${id}.json`,
-      { cache: "no-store" }
-    );
+): Promise<ChampionDetail> => {
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${id}.json`,
+    { cache: "no-store" }
+  );
 
-    const data: ChampionDetailData = await response.json();
-    return data.data[id];
-  } catch (error) {
-    console.error("fetch champion", error);
+  if (!response.ok) throw new Error("챔피언 정보를 가져오는데 실패했습니다.");
 
-    return null;
-  }
+  const data: ChampionDetailData = await response.json();
+  return data.data[id];
 };
 
 export const fetchItemList = async (version: string): Promise<Item[]> => {
   const response = await fetch(
     `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/item.json`
   );
+
+  if (!response.ok) throw new Error("아이템 목록을 가져오는데 실패했습니다.");
 
   const data: ItemsData = await response.json();
 
