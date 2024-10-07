@@ -61,7 +61,7 @@ export interface ChampionStats {
   attackspeed: number;
 }
 
-export type ChampionListItem = Pick<Champion, "key" | "name" | "image">;
+export type ChampionListItem = Pick<Champion, "id" | "key" | "name" | "image">;
 
 // 챔피언 상세
 export interface ChampionDetailData {
