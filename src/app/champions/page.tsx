@@ -1,5 +1,5 @@
 import { ChampionListItem } from "@/types/Champion";
-import { getChampionList, getLatestVersion } from "@/utils/serverApi";
+import { fetchChampionList, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ export const revalidate = 86400;
 
 const ChampionsPage = async () => {
   const version = await getLatestVersion();
-  const champions: ChampionListItem[] = await getChampionList(version);
+  const champions: ChampionListItem[] = await fetchChampionList(version);
 
   return (
     <main>

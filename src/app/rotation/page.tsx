@@ -2,7 +2,7 @@
 import { ChampionListItem } from "@/types/Champion";
 import { ChampionRotationIds } from "@/types/ChampionRotation";
 import { getChampionRotation } from "@/utils/riotApi";
-import { getChampionList, getLatestVersion } from "@/utils/serverApi";
+import { fetchChampionList, getLatestVersion } from "@/utils/serverApi";
 import React, { useEffect, useState } from "react";
 
 const Rotationpage = () => {
@@ -18,7 +18,7 @@ const Rotationpage = () => {
 
       const version = await getLatestVersion();
 
-      const championListData = await getChampionList(version);
+      const championListData = await fetchChampionList(version);
       setChampions(championListData);
     };
     fetchRoation();
