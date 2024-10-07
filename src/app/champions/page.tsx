@@ -21,7 +21,7 @@ const ChampionsPage = async () => {
                 width={100}
                 height={100}
               />
-              <p className="text-center">{champion.name}</p>
+              <p className="text-center break-all">{champion.name}</p>
             </Link>
           </li>
         ))}
