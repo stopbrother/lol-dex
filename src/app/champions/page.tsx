@@ -11,7 +11,7 @@ const ChampionsPage = async () => {
 
   return (
     <main>
-      <ul>
+      <ul className="flex flex-wrap gap-8 justify-center items-center">
         {champions?.map((champion) => (
           <li key={champion.key}>
             <Link href={`/champions/${champion.key}`}>
@@ -21,7 +21,7 @@ const ChampionsPage = async () => {
                 width={100}
                 height={100}
               />
-              <p>{champion.name}</p>
+              <p className="text-center">{champion.name}</p>
             </Link>
           </li>
         ))}

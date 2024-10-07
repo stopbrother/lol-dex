@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased, bg-[#18181b] text-white py-[100px]`}
       >
-        <nav className="fixed top-0 w-full h-14 border-b border-b-[rgba(255,255,255,0.5)]">
+        <nav className="fixed top-0 w-full h-14 border-b border-b-[rgba(255,255,255,0.5)] bg-[#18181b] z-10">
           <ul className="flex flex-row justify-between p-4">
             <li>
               <Link href="/">홈</Link>
