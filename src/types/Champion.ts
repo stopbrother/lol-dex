@@ -9,6 +9,7 @@ export interface ChampionsData {
 }
 
 export interface Champion {
+  version: string;
   id: string;
   key: string;
   name: string;
@@ -61,7 +62,10 @@ export interface ChampionStats {
   attackspeed: number;
 }
 
-export type ChampionListItem = Pick<Champion, "id" | "key" | "name" | "image">;
+export type ChampionListItem = Pick<
+  Champion,
+  "id" | "key" | "name" | "image" | "version"
+>;
 
 // 챔피언 상세
 export interface ChampionDetailData {

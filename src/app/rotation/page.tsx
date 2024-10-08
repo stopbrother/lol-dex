@@ -1,10 +1,10 @@
 "use client";
+import ChampionCard from "@/components/ChampionCard";
 import { ChampionListItem } from "@/types/Champion";
 import { ChampionRotationIds } from "@/types/ChampionRotation";
 import { getChampionRotation } from "@/utils/riotApi";
-import { fetchChampionList, getLatestVersion } from "@/utils/serverApi";
-import Image from "next/image";
-import Link from "next/link";
+import { fetchChampionList } from "@/utils/serverApi";
+
 import React, { useEffect, useState } from "react";
 
 const Rotationpage = () => {
@@ -12,17 +12,13 @@ const Rotationpage = () => {
     null
   );
   const [champions, setChampions] = useState<ChampionListItem[]>([]);
-  const [version, setVersion] = useState<string>("");
 
   useEffect(() => {
     const fetchRoation = async () => {
       const data = await getChampionRotation();
       setRotationData(data);
 
-      const version = await getLatestVersion();
-      setVersion(version);
-
-      const championListData = await fetchChampionList(version);
+      const championListData = await fetchChampionList();
       setChampions(championListData);
     };
     fetchRoation();
@@ -37,15 +33,7 @@ const Rotationpage = () => {
       <ul className="flex flex-wrap gap-8 justify-center items-center">
         {rotationChampions?.map((champion) => (
           <li key={champion.key}>
-            <Link href={`/champions/${champion.id}`}>
-              <Image
-                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.image.full}`}
-                alt={champion.name}
-                width={100}
-                height={100}
-              />
-              <p className="text-center break-all">{champion.name}</p>
-            </Link>
+            <ChampionCard champion={champion} />
           </li>
         ))}
       </ul>
