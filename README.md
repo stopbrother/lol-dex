@@ -4,7 +4,7 @@ Riot API를 활용한 리그 오브 레전드 정보 앱
 
 # 배포 링크
 
-https://lol-611kfftnb-stopbrothers-projects.vercel.app/champions
+lol-dex-three.vercel.app
 
 # 폴더 구조
 
