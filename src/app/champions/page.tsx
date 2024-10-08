@@ -6,8 +6,9 @@ import Link from "next/link";
 export const revalidate = 86400;
 
 const ChampionsPage = async () => {
+  const champions: ChampionListItem[] = await fetchChampionList();
+
   const version = await getLatestVersion();
-  const champions: ChampionListItem[] = await fetchChampionList(version);
 
   return (
     <main>

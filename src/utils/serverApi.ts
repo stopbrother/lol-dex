@@ -19,11 +19,11 @@ export const getLatestVersion = async () => {
   return versions[0];
 };
 
-export const fetchChampionList = async (
-  version: string
-): Promise<ChampionListItem[]> => {
+export const fetchChampionList = async (): Promise<ChampionListItem[]> => {
+  const latestVersion = await getLatestVersion();
+
   const response = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`
+    `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion.json`
   );
 
   if (!response.ok) throw new Error("챔피언 목록을 가져오는데 실패했습니다.");
@@ -33,11 +33,12 @@ export const fetchChampionList = async (
 };
 
 export const fetchChampionDetail = async (
-  id: string,
-  version: string
+  id: string
 ): Promise<ChampionDetail> => {
+  const latestVersion = await getLatestVersion();
+
   const response = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${id}.json`,
+    `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/champion/${id}.json`,
     { cache: "no-store" }
   );
 
@@ -47,9 +48,11 @@ export const fetchChampionDetail = async (
   return data.data[id];
 };
 
-export const fetchItemList = async (version: string): Promise<Item[]> => {
+export const fetchItemList = async (): Promise<Item[]> => {
+  const latestVersion = await getLatestVersion();
+
   const response = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/item.json`
+    `https://ddragon.leagueoflegends.com/cdn/${latestVersion}/data/ko_KR/item.json`
   );
 
   if (!response.ok) throw new Error("아이템 목록을 가져오는데 실패했습니다.");
