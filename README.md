@@ -4,7 +4,7 @@ Riot API를 활용한 리그 오브 레전드 정보 앱
 
 # 배포 링크
 
-lol-dex-three.vercel.app
+[lol-dex-three.vercel.app](https://vercel.live/link/lol-dex-three.vercel.app?via=project-dashboard-alias-list&p=1)
 
 # 폴더 구조
 
